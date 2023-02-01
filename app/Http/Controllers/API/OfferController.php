@@ -5,15 +5,17 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Offers;
+use App\Cicles;
 use Validator;
 
 class OfferController extends Controller { 
     public $successStatus = 200;
 
     public function index() {
-        $offers = Offers::all();
+        $offers = Offers::paginate(10);
+        $cicles = Cicles::all();
 
-        return response()->json(['Offers' => $offers->toArray()], $this->successStatus);
+        return view('user.offers')->with('offers', $offers)->with('cicles', $cicles);
     }
 
     public function store(Request $request) {
