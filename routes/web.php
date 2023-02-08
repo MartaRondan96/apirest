@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('offers/show/','API\OfferController@index')->name('offers.index');
-Route::get('articles/show/','API\ArticleController@index')->name('articles.index');
+Route::get('offers/show/','OfferController@index')->name('offers.index');
+Route::get('articles/show/','ArticleController@index')->name('articles.index');

@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Articles;
+use App\Cicles;
 use Validator;
 
 class ArticleController extends Controller { 
     public $successStatus = 200;
 
     public function index() {
-        $articles = Articles::all();
-
-        return response()->json(['article' => $articles->toArray()], $this->successStatus);
+        $articles = Articles::paginate(10);
+        $cicles = Cicles::all();
+        return view('user.articles')->with('articles', $articles)->with('cicles', $cicles);
     }
 
     public function store(Request $request) {
